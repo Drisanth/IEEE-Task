@@ -1,0 +1,51 @@
+Give the difference between initState() and setState(). Give code examples to explain.
+
+initState(): is a method called only once in a lifecycle. 
+            It is performed to intialize data in stateful widget when it is inserted into the widget tree for the first time.
+Example: 
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+class _MyWidgetState extends State<MyWidget> {
+  int _counter;
+  @override
+  void initState() {
+    super.initState();
+    _counter = 0;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Text('The counter is: $_counter');
+  }
+}
+
+setState():is a method which is used to update the state of a stateful widget. 
+            It updates the properties with new state values. 
+            setState is a way to dynamically change the UI. 
+            Calling setState marks the corresponding Widget dirty and when flutter builds the next frame, it renders the Widget according to the latest values of the State Object.
+Example: 
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+class _MyWidgetState extends State<MyWidget> {
+  int _counter;
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('The counter is: $_counter'),
+        RaisedButton(
+          onPressed: _incrementCounter,
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
